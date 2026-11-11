@@ -1,0 +1,47 @@
+### Backend - .NET ###
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.dll
+*.pdb
+appsettings.*.json
+!appsettings.Example.json
+appsettings.Local.json
+*.db
+*.sqlite
+
+### Frontend - Node / Vite ###
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+
+### Editores / SO ###
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Credenciales, certificados y respaldos locales
+secrets.json
+*.pfx
+*.p12
+*.pem
+*.key
+*.bak
+*.zip
+TestResults/

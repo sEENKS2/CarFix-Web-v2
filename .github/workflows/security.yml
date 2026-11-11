@@ -1,0 +1,30 @@
+name: Validación de seguridad y compilación
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/check_secrets.py
+      - run: dotnet test tests/CarFix.Security.Tests/CarFix.Security.Tests.csproj -m:1 --nologo
+      - run: npm ci --ignore-scripts
+        working-directory: Frontend
+      - run: npm test
+        working-directory: Frontend
+      - run: npm run build
+        working-directory: Frontend
